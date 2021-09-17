@@ -32,7 +32,15 @@ export class DashboardComponent implements OnInit {
       1
     );
   }
-  Ti;
+
+  deleteCard(data) {
+      let indx = this.titleList.findIndex((x) => x.title.description == data.listTitle)
+      this.titleList[indx].data.splice(
+        this.titleList[indx].data.findIndex((x) => x.title == data.cardTitle), 1
+      );
+      this.ref.markForCheck();
+  }
+  
   openAddCardModal(listTitle) {
     const dialogRef = this.dialog.open(TitleCardModalComponent, {
       width: '250px',
@@ -46,7 +54,8 @@ export class DashboardComponent implements OnInit {
       this.titleList[indx].data.push({
         title: result.title,
         description: result.description,
-        createDate: new Date(),
+        createDate: new Date().toDateString(),
+        timestamp: Date.now(),
       });
       this.ref.markForCheck();
     });

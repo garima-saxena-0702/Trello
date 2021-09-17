@@ -15,7 +15,6 @@ export class ModalListComponent implements OnInit {
 
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<ModalListComponent>,
     @Inject(MAT_DIALOG_DATA) public data: AddListModel) {
-      console.log(data);
       this.description = "";
      }
 
@@ -26,7 +25,6 @@ export class ModalListComponent implements OnInit {
   }
 
   save() {
-      if(this.form.value)
         this.dialogRef.close(this.form.value);
   }
 

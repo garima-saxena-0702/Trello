@@ -9,16 +9,20 @@ export class EntityListComponent implements OnInit {
   
   @Input() data: any;
   @Output() deleteColumn: EventEmitter<any>  = new EventEmitter<any>();
+  @Output() deleteCard: EventEmitter<any>  = new EventEmitter<any>();
   @Output() openAddCardModal: EventEmitter<any>  = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.data);
   }
 
   deleteTitle(e) {
     this.deleteColumn.emit(e);
+  }
+
+  deleteCardAction(e) {
+    this.deleteCard.emit({cardTitle: e, listTitle: this.data.title.description});
   }
 
   addCard(e) {

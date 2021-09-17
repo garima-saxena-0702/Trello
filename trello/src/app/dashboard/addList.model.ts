@@ -6,7 +6,8 @@ export class AddListModel {
 export class CardModel {
     title: string;
     description: string;
-    createDate: Date; 
+    createDate: string; 
+    timestamp: number
 }
 
 export class ListModel {

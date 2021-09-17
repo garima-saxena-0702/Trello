@@ -15,7 +15,7 @@ export class TitleCardModalComponent implements OnInit {
   title: string = '';
   
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<TitleCardModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: CardModel) { }
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
      this.form = this.fb.group({
@@ -25,7 +25,6 @@ export class TitleCardModalComponent implements OnInit {
   }
 
   save() {
-      if(this.form.value)
         this.dialogRef.close(this.form.value);
   }
 
