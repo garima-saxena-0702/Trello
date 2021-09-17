@@ -9,6 +9,7 @@ export class EntityListComponent implements OnInit {
   
   @Input() data: any;
   @Output() deleteColumn: EventEmitter<any>  = new EventEmitter<any>();
+  @Output() openAddCardModal: EventEmitter<any>  = new EventEmitter<any>();
 
   constructor() { }
 
@@ -18,6 +19,10 @@ export class EntityListComponent implements OnInit {
 
   deleteTitle(e) {
     this.deleteColumn.emit(e);
+  }
+
+  addCard(e) {
+    this.openAddCardModal.emit(e);
   }
 
 }

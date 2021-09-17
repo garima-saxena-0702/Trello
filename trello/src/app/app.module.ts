@@ -9,13 +9,17 @@ import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalListComponent } from './modal-list/modal-list.component';
 import { EntityListComponent } from './entity-list/entity-list.component';
+import { TitleCardComponent } from './title-card/title-card.component';
+import { TitleCardModalComponent } from './title-card-modal/title-card-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     ModalListComponent,
-    EntityListComponent
+    EntityListComponent,
+    TitleCardComponent,
+    TitleCardModalComponent
   ],
   imports: [
     BrowserModule,

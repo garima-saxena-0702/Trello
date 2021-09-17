@@ -1,15 +1,30 @@
 .main {
 
     border: 1px solid purple;
-    width: 175px;
+    width: 200px;
     margin: 5px;
 
     .topDiv {
         display: flex;
         padding: 5px;
+        justify-content: space-between;
 
         .leftButton {
-            float: right;
+        }
+    }
+
+    .bottomDiv {
+        text-align: center;
+        margin-top: 10%;
+
+        button {
+            border: none;
+            outline: none;
+            cursor: pointer;
+
+            img {
+                width: 25px;
+            }
         }
     }
 }

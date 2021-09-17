@@ -1,10 +1,10 @@
 <div>
-    <div>
+    <div class="buttonAdd">  
         <button  mat-raised-button color="primary" class="addList" (click)="openDialog()">Add List</button>
     </div>
     <div class="container">
         <div *ngFor="let columnData of titleList">
-            <app-entity-list [data]="columnData"></app-entity-list>
+            <app-entity-list [data]="columnData" (deleteColumn)="deleteColumn($event)" (openAddCardModal)="openAddCardModal($event)"></app-entity-list>
         </div>
     </div>
 </div>

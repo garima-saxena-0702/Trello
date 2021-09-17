@@ -1,6 +1,12 @@
 <div class="main">
     <div class="topDiv">
-        <p>{{data.title.description}}</p>
-        <button class="leftButton" mat-raised-button color="primary" (click)="deleteTitle($event)">X</button>
+        <p style="margin: 0;">{{data.title.description}}</p>
+        <button class="leftButton" mat-raised-button color="primary" (click)="deleteTitle(data.title.description)">X</button>
+    </div>
+    <div *ngFor="let cardData of data.data">
+        <app-title-card [title]="cardData.title" [description]="cardData.description" [createDate]="cardData.createDate"></app-title-card>
+    </div>
+    <div class="bottomDiv">
+        <button (click)="addCard(data.title.description)"><img src="../../assets/round-add-button.png" alt="add"></button>
     </div>
 </div>

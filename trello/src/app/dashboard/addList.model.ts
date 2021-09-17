@@ -5,11 +5,11 @@ export class AddListModel {
 
 export class CardModel {
     title: string;
-    describtion: string;
+    description: string;
     createDate: Date; 
 }
 
 export class ListModel {
-    title: string;
+    title: any;
     data: CardModel[];
 }
