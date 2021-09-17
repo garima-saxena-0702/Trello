@@ -1,1 +1,10 @@
-<button  mat-raised-button color="primary" class="addList" (click)="openDialog()">Add List</button>
+<div>
+    <div>
+        <button  mat-raised-button color="primary" class="addList" (click)="openDialog()">Add List</button>
+    </div>
+    <div class="container">
+        <div *ngFor="let columnData of titleList">
+            <app-entity-list [data]="columnData"></app-entity-list>
+        </div>
+    </div>
+</div>

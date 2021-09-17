@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ModalListComponent } from '../modal-list/modal-list.component';
+import { ListModel } from './addList.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,7 @@ import { ModalListComponent } from '../modal-list/modal-list.component';
 })
 export class DashboardComponent implements OnInit {
 
-  public title: string;
+  public titleList: ListModel[] = [];
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -23,7 +24,8 @@ export class DashboardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.title = result;
+      this.titleList.push({title: result, data: [] });
+      console.log(this.titleList);
     });
   }
 

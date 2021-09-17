@@ -1,0 +1,15 @@
+.main {
+
+    border: 1px solid purple;
+    width: 175px;
+    margin: 5px;
+
+    .topDiv {
+        display: flex;
+        padding: 5px;
+
+        .leftButton {
+            float: right;
+        }
+    }
+}
