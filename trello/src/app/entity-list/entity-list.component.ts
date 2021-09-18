@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./entity-list.component.scss'],
 })
 export class EntityListComponent implements OnInit {
-  public dragged;
+  public dragged: any;
   @Input() data: any;
   // @Input() ids: string[];
   @Output() deleteColumn: EventEmitter<any> = new EventEmitter<any>();
@@ -23,7 +23,7 @@ export class EntityListComponent implements OnInit {
       'dragstart',
       function (event) {
         // store a ref. on the dragged elem
-        this.dragged = <HTMLInputElement>event.target;
+        that.dragged = <HTMLInputElement>event.target;
         // make it half transparent
         event.target.style.opacity = 0.5;
       },
@@ -56,10 +56,10 @@ export class EntityListComponent implements OnInit {
         event.preventDefault();
         // move dragged elem to the selected drop target
         if (event.target.className !== 'mat-typography') {
-          that.addCardToList(this.dragged.id, that.getListTo(event));
+          that.addCardToList(that.dragged.id, that.getListTo(event));
           that.deleteCardAction({
-            title: this.dragged.id.split(':')[0],
-            time: this.dragged.id.split(':')[1],
+            title: that.dragged.id.split(':')[0],
+            time: that.dragged.id.split(':')[1],
           });
 
         } else {
