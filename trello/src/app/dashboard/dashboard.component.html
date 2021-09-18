@@ -4,7 +4,9 @@
     </div>
     <div class="container">
         <div *ngFor="let columnData of titleList">
-            <app-entity-list [data]="columnData" [ids]="titleId" (deleteColumn)="deleteColumn($event)" (deleteCard)="deleteCard($event)" (openAddCardModal)="openAddCardModal($event)"></app-entity-list>
+            <app-entity-list [data]="columnData" (deleteColumn)="deleteColumn($event)" 
+            (deleteCard)="deleteCard($event)" (openAddCardModal)="openAddCardModal($event)"
+            (dragCardToList)="dragCardToList($event)"></app-entity-list>
         </div>
     </div>
 </div>

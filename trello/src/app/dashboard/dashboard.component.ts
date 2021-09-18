@@ -11,11 +11,11 @@ import { ListModel } from './addList.model';
 })
 export class DashboardComponent implements OnInit {
   public titleList: ListModel[] = [];
-  public titleId: string[] = [];
+  // public titleId: string[] = [];
   constructor(public dialog: MatDialog, private ref: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    if(document.cookie) this.titleList = JSON.parse(document.cookie).list;
+    if (document.cookie) this.titleList = JSON.parse(document.cookie).list;
   }
 
   openDialog(): void {
@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       this.titleList.push({ title: result, data: [] });
-      this.titleId.push(result);
+      // this.titleId.push(result);
     });
   }
 
@@ -35,21 +35,26 @@ export class DashboardComponent implements OnInit {
       this.titleList.findIndex((x) => x.title.description == listTitle),
       1
     );
-    this.titleId.splice(this.titleId.findIndex(listTitle), 1)
+    // this.titleId.splice(this.titleId.findIndex(listTitle), 1)
     this.resetCookie();
     this.setCookie();
   }
 
   deleteCard(data) {
-      let indx = this.titleList.findIndex((x) => x.title.description == data.listTitle)
-      this.titleList[indx].data.splice(
-        this.titleList[indx].data.findIndex((x) => x.title == data.cardTitle && x.timestamp == data.timestamp), 1
-      );
-      this.resetCookie();
-      this.setCookie();
-      this.ref.markForCheck();
+    let indx = this.titleList.findIndex(
+      (x) => x.title.description == data.listTitle
+    );
+    this.titleList[indx].data.splice(
+      this.titleList[indx].data.findIndex(
+        (x) => x.title == data.cardTitle && x.timestamp == data.timestamp
+      ),
+      1
+    );
+    this.resetCookie();
+    this.setCookie();
+    this.ref.markForCheck();
   }
-  
+
   openAddCardModal(listTitle) {
     const dialogRef = this.dialog.open(TitleCardModalComponent, {
       width: '250px',
@@ -72,11 +77,27 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  dragCardToList(details) {
+    let indx = this.titleList.findIndex(
+      (x) => x.title.description == details.listFrom
+    );
+    let card  = this.titleList[indx].data.find(
+      (x) =>
+        x.title == details.cardId.split(':')[0] &&
+        x.timestamp == details.cardId.split(':')[1]
+      );
+    let indxTo = this.titleList.findIndex(
+      (x) => x.title.description == details.listTo
+    );
+    if(card.title) this.titleList[indxTo].data.push(card);
+    this.titleList[indxTo].data.sort((a,b) => a.timestamp - b.timestamp )
+  }
+
   resetCookie() {
-    document.cookie = ''
+    document.cookie = '';
   }
 
   setCookie() {
-    document.cookie = JSON.stringify({list: this.titleList});
+    document.cookie = JSON.stringify({ list: this.titleList });
   }
 }

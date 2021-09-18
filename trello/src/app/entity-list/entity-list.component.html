@@ -1,14 +1,10 @@
-<div class="main">
+<div class="main dropzone">
     <div class="topDiv">
         <p style="margin: 0;">{{data.title.description}}</p>
         <button class="leftButton" mat-raised-button (click)="deleteTitle(data.title.description)">X</button>
     </div>
-    <div cdkDropList
-        [id]="data.title.description"
-        [cdkDropListData]="data.data"
-        [cdkDropListConnectedTo]="ids"
-        (cdkDropListDropped)="onTaskDrop($event)">
-            <app-title-card *ngFor="let cardData of data.data"
+    <div [id]="cardData.title+':'+cardData.timestamp" *ngFor="let cardData of data.data" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)">
+            <app-title-card
             [title]="cardData.title"
             [description]="cardData.description" 
             [createDate]="cardData.createDate"
