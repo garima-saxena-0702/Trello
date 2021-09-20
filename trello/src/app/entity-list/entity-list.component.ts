@@ -23,9 +23,9 @@ export class EntityListComponent implements OnInit {
       'dragstart',
       function (event) {
         // store a ref. on the dragged elem
-        that.dragged = <HTMLInputElement>event.target;
+        that.dragged = (<HTMLElement>event.target);
         // make it half transparent
-        event.target.style.opacity = 0.5;
+        (<HTMLElement>event.target).style.opacity = '0.5';
       },
       false
     );
@@ -34,7 +34,7 @@ export class EntityListComponent implements OnInit {
       'dragend',
       function (event) {
         // reset the transparency
-        event.target.style.opacity = '';
+        (<HTMLElement>event.target).style.opacity = '';
       },
       false
     );
@@ -55,15 +55,14 @@ export class EntityListComponent implements OnInit {
         // prevent default action (open as link for some elements)
         event.preventDefault();
         // move dragged elem to the selected drop target
-        if (event.target.className !== 'mat-typography') {
+        if ((<HTMLElement>event.target).className !== 'mat-typography') {
           that.addCardToList(that.dragged.id, that.getListTo(event));
           that.deleteCardAction({
             title: that.dragged.id.split(':')[0],
             time: that.dragged.id.split(':')[1],
           });
-
         } else {
-          event.target.style.opacity = 1;
+          (<HTMLElement>event.target).style.opacity = '1';
         }
       },
       false

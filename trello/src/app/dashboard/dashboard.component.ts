@@ -90,7 +90,9 @@ export class DashboardComponent implements OnInit {
       (x) => x.title.description == details.listTo
     );
     if(card.title) this.titleList[indxTo].data.push(card);
-    this.titleList[indxTo].data.sort((a,b) => a.timestamp - b.timestamp )
+    this.titleList[indxTo].data = this.titleList[indxTo].data.sort(
+      (a, b) => a.timestamp - b.timestamp
+    );
   }
 
   resetCookie() {
